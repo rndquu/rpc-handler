@@ -20,11 +20,11 @@ jobs:
           node-version: "20.10.0"
           registry-url: https://registry.npmjs.org/
 
-      - name: Build
-        run: |
-          yarn install --immutable --immutable-cache --check-cache
-          yarn build
-          yarn pack
+      # - name: Build
+      #   run: |
+      #     yarn install --immutable --immutable-cache --check-cache
+      #     yarn build
+      #     yarn pack
 
       - name: Version and publish to npm
         id: npm-bump
