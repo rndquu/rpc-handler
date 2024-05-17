@@ -49,6 +49,7 @@
     "@cspell/dict-typescript": "^3.1.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.19",
+    "@types/node-fetch": "^2.6.11",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "cspell": "^8.4.0",
