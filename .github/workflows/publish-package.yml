@@ -1,14 +1,13 @@
-name: publish-package
+name: Publish Package
 
 on:
   workflow_dispatch:
-    inputs:
-      newversion:
-        description: 'Semantic Version Bump Type (major minor patch)'
-        required: true
+  push:
+    branches:
+      - main
 
 jobs:
-  release-please:
+  publish-package:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository code
@@ -20,19 +19,11 @@ jobs:
           node-version: "20.10.0"
           registry-url: https://registry.npmjs.org/
 
-      # - name: Build
-      #   run: |
-      #     yarn install --immutable --immutable-cache --check-cache
-      #     yarn build
-      #     yarn pack
-
-      - name: Version and publish to npm
-        id: npm-bump
-        uses: bcomnes/npm-bump@v2
-        with:
-          git_email: github-actions@github.com
-          git_username: github-actions
-          newversion: ${{ github.event.inputs.newversion }}
-          push_version_commit: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          npm_token: ${{ secrets.NPM_ACCESS_TOKEN }}
+      - name: Build & Publish
+        run: |
+          yarn install --immutable --immutable-cache --check-cache
+          yarn build
+          yarn pack
+          yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
