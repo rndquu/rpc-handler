@@ -14,9 +14,6 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      - name: Enable Corepack
-        run: corepack enable
-
       - name: Install Node
         uses: actions/setup-node@v4
         with:
@@ -24,4 +21,4 @@ jobs:
           registry-url: https://registry.npmjs.org/
       
       - name: Bump version
-        run: yarn version ${{ github.event.inputs.bump }}
+        run: yarn version --new-version ${{ github.event.inputs.bump }}
