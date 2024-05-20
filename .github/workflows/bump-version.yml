@@ -21,4 +21,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       
       - name: Bump version
-        run: yarn version --new-version ${{ github.event.inputs.bump }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          yarn version --new-version ${{ github.event.inputs.bump }}
