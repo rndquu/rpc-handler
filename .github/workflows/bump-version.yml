@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       bump:
-        description: 'bump type, major or minor or patch or empty string'
+        description: 'bump type: major, minor or patch'
         default: ''
 
 jobs:
@@ -21,6 +21,4 @@ jobs:
           registry-url: https://registry.npmjs.org/
       
       - name: Bump version
-        uses: MeilCli/bump-release-action@v2
-        with:
-          bump: ${{ github.event.inputs.bump }}
+        run: yarn version ${{ github.event.inputs.bump }}
